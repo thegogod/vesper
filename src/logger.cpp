@@ -6,8 +6,6 @@
 #include "date_time.cpp"
 #include "ansi.cpp"
 
-using namespace std;
-
 class ILogger {
   public:
     enum Level {
@@ -17,14 +15,14 @@ class ILogger {
       Error,
     };
 
-    virtual void debug(const string& message) = 0;
-    virtual void info(const string& message) = 0;
-    virtual void warn(const string& message) = 0;
-    virtual void error(const string& message) = 0;
-    virtual void log(Level level, const string& message) = 0;
+    virtual void debug(const std::string& message) = 0;
+    virtual void info(const std::string& message) = 0;
+    virtual void warn(const std::string& message) = 0;
+    virtual void error(const std::string& message) = 0;
+    virtual void log(Level level, const std::string& message) = 0;
 
   protected:
-    string level_to_string(Level level) {
+    std::string level_to_string(Level level) {
       switch (level) {
       case Debug:
         return "debug";
@@ -53,35 +51,35 @@ class ILogger {
 
 class Logger : public ILogger {
   public:
-    Logger(string name) : name(name) { };
+    Logger(std::string name) : name(name) { };
     ~Logger() = default;
 
-    void debug(const string& message) {
+    void debug(const std::string& message) {
       this->log(Debug, message);
     }
 
-    void info(const string& message) {
+    void info(const std::string& message) {
       this->log(Info, message);
     }
 
-    void warn(const string& message) {
+    void warn(const std::string& message) {
       this->log(Warn, message);
     }
 
-    void error(const string& message) {
+    void error(const std::string& message) {
       this->log(Error, message);
     }
 
-    void log(Level level, const string& message) {
+    void log(Level level, const std::string& message) {
       auto now = new DateTime();
 
-      cout << this->level_to_color(level)
+      std::cout << this->level_to_color(level)
            << "- " << *now << " " << ANSI::Bold
            << ANSI::Underline << name << ANSI::UnderlineReset << " "
            << "[" << this->level_to_string(level) << "] " << ANSI::Reset
-           << message << endl;
+           << message << std::endl;
     }
 
   private:
-    string name;
+    std::string name;
 };

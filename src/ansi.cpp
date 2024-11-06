@@ -1,8 +1,6 @@
 #include <stdint.h>
 #include <string>
 
-using namespace std;
-
 class ANSI {
   public:
     enum Code {
@@ -55,17 +53,17 @@ class ANSI {
     constexpr bool operator==(ANSI a) const { return value == a.value; }
     constexpr bool operator!=(ANSI a) const { return value != a.value; }
 
-    friend ostream& operator<<(ostream& os, ANSI& ansi) {
+    friend std::ostream& operator<<(std::ostream& os, ANSI& ansi) {
       os << ansi.to_string();
       return os;
     }
 
-    friend ostream& operator<<(ostream& os, const Code& code) {
+    friend std::ostream& operator<<(std::ostream& os, const Code& code) {
       os << ANSI(code).to_string();
       return os;
     }
 
-    string to_string() {
+    std::string to_string() {
       switch (value) {
       case Reset:
         return "\x1b[0m";

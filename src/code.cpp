@@ -1,8 +1,6 @@
 #include <stdint.h>
 #include <string>
 
-using namespace std;
-
 class Code {
   public:
     enum Value : uint8_t {
@@ -29,7 +27,7 @@ class Code {
     constexpr bool operator==(Code a) const { return value == a.value; }
     constexpr bool operator!=(Code a) const { return value != a.value; }
 
-    string to_string() {
+    std::string to_string() {
       switch (value) {
       case Connect:
         return "connect";
