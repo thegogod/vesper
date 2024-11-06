@@ -1,8 +1,9 @@
-#include <iostream>
+#include "logger.cpp"
 
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    cout << "hello world" << endl;
-    return 0;
+  Logger *log = new Logger("main");
+  log->info("hello world");
+  return 0;
 }
