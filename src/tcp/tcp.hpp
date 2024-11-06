@@ -19,6 +19,7 @@ namespace tcp {
 
   class Socket {
     public:
+      Socket() = delete;
       Socket(int id, sockaddr_in addr) : _id(id), _addr(addr) { }
 
       int id() { return _id; }
@@ -32,6 +33,7 @@ namespace tcp {
 
   class Listener {
     public:
+      Listener() = delete;
       Listener(int port) : _port(port) { }
       ~Listener();
 

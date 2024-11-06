@@ -51,6 +51,7 @@ class ILogger {
 
 class Logger : public ILogger {
   public:
+    Logger() = delete;
     Logger(std::string name) : name(name) { };
     ~Logger() = default;
 
