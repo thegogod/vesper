@@ -21,6 +21,7 @@ namespace tcp {
     public:
       Socket() = delete;
       Socket(int id, sockaddr_in addr) : _id(id), _addr(addr) { }
+      ~Socket();
 
       int id() { return _id; }
       sockaddr_in addr() { return _addr; }
