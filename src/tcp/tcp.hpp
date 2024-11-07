@@ -53,7 +53,6 @@ namespace tcp {
     private:
       int _port;
       Socket* _socket;
-      std::vector<Socket*> _conns;
   };
 };
 

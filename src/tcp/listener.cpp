@@ -3,11 +3,6 @@
 namespace tcp {
   Listener::~Listener() {
     close();
-
-    for (auto conn : _conns) {
-      delete conn;
-    }
-
     delete _socket;
   }
 
@@ -45,9 +40,7 @@ namespace tcp {
       return nullptr;
     }
 
-    auto socket = new Socket(id, addr);
-    _conns.push_back(socket);
-    return socket;
+    return new Socket(id, addr);
   }
 
   void Listener::close() {

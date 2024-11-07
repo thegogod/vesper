@@ -1,28 +1,40 @@
+#include <thread>
+
 #include "logger.hpp"
 #include "tcp/tcp.hpp"
 #include "connection.hpp"
 
+void on_connect(tcp::Socket &socket) {
+  auto conn = Connection(&socket);
+
+  while (true) {
+    std::cout << "hello world" << std::endl;
+  }
+
+  // delete conn;
+}
+
 int main(int argc, char *argv[]) {
   auto log = Logger("main");
-  auto listener = new tcp::Listener(1883);
+  auto listener = tcp::Listener(1883);
 
   try {
-    listener->listen();
+    listener.listen();
     log.info("listening...");
 
     while (true) {
-      auto socket = listener->accept();
+      auto socket = listener.accept();
 
       if (socket == nullptr) {
         continue;
       }
 
-      auto conn = new Connection(socket);
+      std::thread t(on_connect, std::ref(*socket));
+      t.detach();
     }
   } catch (std::exception e) {
     log.error(e.what());
   }
 
-  delete listener;
   return 0;
 }
