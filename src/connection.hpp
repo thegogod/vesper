@@ -3,20 +3,17 @@
 
 #include "tcp/tcp.hpp"
 #include "io/io.hpp"
+
 #include "logger.hpp"
+#include "packet.hpp"
 
-class Connection {
+class IConnection {
   public:
-    Connection() = delete;
-    Connection(tcp::Socket* socket);
-    ~Connection() { delete _socket; }
-
-    int id() { return _socket->id(); }
-    Logger log() { return _log; }
-
-  private:
-    tcp::Socket* _socket;
-    Logger _log;
+    virtual int id() = 0;
+    virtual bool handshake(std::string username, std::string password) = 0;
+    virtual IPacket read() = 0;
+    virtual void write(IPacket packet) = 0;
+    virtual void close() = 0;
 };
 
 #endif
