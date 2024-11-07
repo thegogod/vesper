@@ -1,3 +1,6 @@
+#ifndef TCP_H
+#define TCP_H
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -28,8 +31,8 @@ namespace tcp {
 
       int id() { return _id; }
       sockaddr_in addr() { return _addr; }
-      void read(uint8_t buf[]);
-      void write(uint8_t buf[]);
+      void read(char* buf);
+      void write(char* buf);
       void close();
 
     private:
@@ -53,3 +56,5 @@ namespace tcp {
       std::vector<Socket*> _conns;
   };
 };
+
+#endif

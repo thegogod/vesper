@@ -5,11 +5,11 @@ namespace tcp {
     close();
   }
 
-  void Socket::read(uint8_t buf[]) {
+  void Socket::read(char* buf) {
     cread(_id, buf, sizeof(buf));
   }
 
-  void Socket::write(uint8_t buf[]) {
+  void Socket::write(char* buf) {
     cwrite(_id, buf, sizeof(buf));
   }
 
