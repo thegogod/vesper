@@ -8,10 +8,8 @@ void on_connect(tcp::Socket &socket) {
   auto conn = Connection(&socket);
 
   while (true) {
-    std::cout << "hello world" << std::endl;
+    conn.log().debug("hello world...");
   }
-
-  // delete conn;
 }
 
 int main(int argc, char *argv[]) {

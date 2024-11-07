@@ -12,6 +12,7 @@ class Connection {
     ~Connection() { delete _socket; }
 
     int id() { return _socket->id(); }
+    Logger log() { return _log; }
 
   private:
     tcp::Socket* _socket;
