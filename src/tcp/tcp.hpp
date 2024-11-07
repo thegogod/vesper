@@ -23,7 +23,7 @@ namespace tcp {
   constexpr auto cread = read;
   constexpr auto cwrite = write;
 
-  class Socket : io::Reader {
+  class Socket : public io::Reader, public io::Writer {
     public:
       Socket() = delete;
       Socket(int id, sockaddr_in addr) : _id(id), _addr(addr) { }

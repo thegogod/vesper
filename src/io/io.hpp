@@ -13,6 +13,8 @@ namespace io {
     public:
       virtual void write(char* buf) = 0;
   };
+
+  class Stream : Reader, Writer { };
 };
 
 #endif

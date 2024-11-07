@@ -2,6 +2,7 @@
 
 #include "logger.hpp"
 #include "tcp/tcp.hpp"
+#include "plugin.hpp"
 #include "connection.hpp"
 
 void on_connect(tcp::Socket &socket) {

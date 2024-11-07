@@ -8,7 +8,7 @@
 #include "connection.cpp"
 
 namespace plugins::mqtt {
-  class Plugin : ITransportPlugin {
+  class Plugin : public ITransportPlugin {
     public:
       std::string name() { return "mqtt"; }
       std::string version() { return "1.0.0"; }

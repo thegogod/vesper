@@ -3,7 +3,7 @@
 #include "../../connection.hpp"
 
 namespace plugins::mqtt {
-  class Connection : IConnection {
+  class Connection : public IConnection {
     public:
       Connection() = delete;
       Connection(tcp::Socket* socket);
@@ -17,4 +17,11 @@ namespace plugins::mqtt {
       tcp::Socket* _socket;
       Logger _log;
   };
+
+  Connection::Connection(tcp::Socket* socket) :
+    _socket(socket),
+    _log(Logger("conn/" + std::to_string(socket->id())))
+  {
+    _log.debug("connected...");
+  }
 };

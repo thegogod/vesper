@@ -12,7 +12,7 @@ class IPlugin {
     virtual std::string version() = 0;
 };
 
-class ITransportPlugin : IPlugin {
+class ITransportPlugin : public IPlugin {
   public:
     virtual IConnection connect(tcp::Socket* socket) = 0;
 };
