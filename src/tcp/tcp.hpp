@@ -10,14 +10,17 @@
 #include <arpa/inet.h>
 
 #include "../error.cpp"
+#include "../io/io.hpp"
 
 namespace tcp {
   constexpr auto clisten = listen;
   constexpr auto csocket = socket;
   constexpr auto caccept = accept;
   constexpr auto cclose = close;
+  constexpr auto cread = read;
+  constexpr auto cwrite = write;
 
-  class Socket {
+  class Socket : io::Reader {
     public:
       Socket() = delete;
       Socket(int id, sockaddr_in addr) : _id(id), _addr(addr) { }
@@ -25,6 +28,8 @@ namespace tcp {
 
       int id() { return _id; }
       sockaddr_in addr() { return _addr; }
+      void read(uint8_t buf[]);
+      void write(uint8_t buf[]);
       void close();
 
     private:
