@@ -1,3 +1,6 @@
+#ifndef DATE_TIME_H
+#define DATE_TIME_H
+
 #include <ctime>
 #include <chrono>
 #include <iomanip>
@@ -25,3 +28,5 @@ class DateTime {
   private:
     std::chrono::system_clock::time_point value;
 };
+
+#endif

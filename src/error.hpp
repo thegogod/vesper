@@ -1,3 +1,6 @@
+#ifndef ERROR_H
+#define ERROR_H
+
 #include <string>
 #include <exception>
 
@@ -12,3 +15,5 @@ class Error : public std::exception {
   private:
     std::string message;
 };
+
+#endif

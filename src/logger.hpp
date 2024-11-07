@@ -1,10 +1,13 @@
+#ifndef LOGGER_H
+#define LOGGER_H
+
 #include <ctime>
 #include <chrono>
 #include <string>
 #include <iostream>
 
-#include "date_time.cpp"
-#include "ansi.cpp"
+#include "date_time.hpp"
+#include "ansi.hpp"
 
 class ILogger {
   public:
@@ -84,3 +87,5 @@ class Logger : public ILogger {
   private:
     std::string name;
 };
+
+#endif

@@ -1,6 +1,6 @@
-#include "logger.cpp"
+#include "logger.hpp"
 #include "tcp/tcp.hpp"
-#include "connection.cpp"
+#include "connection.hpp"
 
 int main(int argc, char *argv[]) {
   auto log = Logger("main");
@@ -17,7 +17,6 @@ int main(int argc, char *argv[]) {
         continue;
       }
 
-      log.info("new connection!");
       auto conn = new Connection(socket);
     }
   } catch (std::exception e) {

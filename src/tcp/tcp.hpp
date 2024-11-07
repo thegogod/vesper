@@ -12,7 +12,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 
-#include "../error.cpp"
+#include "../error.hpp"
 #include "../io/io.hpp"
 
 namespace tcp {

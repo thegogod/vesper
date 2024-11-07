@@ -1,3 +1,6 @@
+#ifndef ANSI_H
+#define ANSI_H
+
 #include <stdint.h>
 #include <string>
 
@@ -147,3 +150,5 @@ class ANSI {
   private:
     Code value;
 };
+
+#endif
