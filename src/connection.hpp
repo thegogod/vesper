@@ -8,7 +8,7 @@
 class Connection {
   public:
     Connection() = delete;
-    Connection(tcp::Socket* socket) : _socket(socket), _log(Logger("conn/" + std::to_string(socket->id()))) { }
+    Connection(tcp::Socket* socket);
 
     ~Connection() { delete _socket; }
 
