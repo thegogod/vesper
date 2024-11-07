@@ -36,8 +36,8 @@ namespace tcp {
       void close();
 
     private:
-      int _id;
-      sockaddr_in _addr;
+      const int _id;
+      const sockaddr_in _addr;
   };
 
   class Listener {
@@ -51,7 +51,7 @@ namespace tcp {
       void close();
 
     private:
-      int _port;
+      const int _port;
       Socket* _socket;
   };
 };

@@ -11,10 +11,17 @@
 namespace plugins::mqtt::packets {
   class Connect : public IConnect {
     public:
-      Header header = Header(Code::Connect);
+      const Header header = Header(Code::Connect);
 
-      Code code();
-      std::string to_string();
+      Code code() { return header.code; }
+      std::string client_id() { return _client_id; }
+      std::string username() { return _username; }
+      std::string password() { return _password; }
+
+    private:
+      std::string _client_id;
+      std::string _username;
+      std::string _password;
   };
 };
 

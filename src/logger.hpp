@@ -85,7 +85,7 @@ class Logger : public ILogger {
     }
 
   private:
-    std::string name;
+    const std::string name;
 };
 
 #endif

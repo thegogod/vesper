@@ -5,11 +5,18 @@
 #include "plugin.hpp"
 #include "connection.hpp"
 
+#include "plugins/mqtt/plugin.cpp"
+
+const ITransportPlugin mqtt = plugins::mqtt::Plugin();
+
 void on_connect(tcp::Socket &socket) {
-  auto conn = Connection(&socket);
+  auto conn = mqtt.connect(&socket);
+
+  if (!conn.handshake("", "")) {
+    return;
+  }
 
   while (true) {
-    conn.log().debug("hello world...");
   }
 }
 
