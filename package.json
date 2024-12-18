@@ -1,0 +1,38 @@
+{
+  "name": "vesper",
+  "version": "0.1.6",
+  "private": true,
+  "homepage": "https://github.com/thegogod/vesper",
+  "bugs": "https://github.com/thegogod/vesper/issues",
+  "packageManager": "npm@10.8.1",
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thegogod/vesper.git"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "development"
+  ],
+  "scripts": {
+    "clean": "npx turbo clean",
+    "build": "npx turbo build",
+    "dev": "npx turbo dev",
+    "lint": "npx turbo lint",
+    "test": "npx turbo test",
+    "fmt": "npx prettier --write \"**/*.{js,ts,tsx,md,json}\"",
+    "publish-packages": "npm run build && npx changeset version && npx changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "latest",
+    "prettier": "^3.4.2",
+    "turbo": "latest",
+    "typescript": "^5.7.2"
+  }
+}
