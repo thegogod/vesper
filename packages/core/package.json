@@ -27,9 +27,11 @@
     "test": "npx jest"
   },
   "devDependencies": {
-    "@vesper/config": "*",
     "@types/jest": "^29.5.12",
+    "@types/node": "^22.10.2",
+    "@vesper/config": "*",
     "jest": "^29.7.0",
+    "reflect-metadata": "^0.2.2",
     "rimraf": "^6.0.1",
     "ts-jest": "^29.2.5",
     "tsup": "^8.2.4",
