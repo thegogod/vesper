@@ -24,8 +24,8 @@ export function Element(options: ElementOptions) {
     class _Element extends HTMLElement {
       constructor() {
         super();
-        const root = this.attachShadow({ mode: 'open' });
-        root.innerHTML = [
+        // const root = this.attachShadow({ mode: 'open' });
+        this.innerHTML = [
           '<style>', options.style || '', '</style>',
           options.template || ''
         ].join('\n');
