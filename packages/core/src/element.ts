@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { Constructor } from './constructor';
+import * as mixins from './mixins';
 
 export interface ElementOptions {
   readonly select: string | Array<string>;
@@ -13,16 +14,19 @@ export interface ElementOptions {
   readonly attributes?: Record<string, string | Array<string>>;
 }
 
-export interface ElementMeta {
-  readonly select: string | Array<string>;
-  readonly template: string;
-  readonly styles: string | Array<string>;
-  readonly attributes: Record<string, string | Array<string>>;
+export interface Element {
+  onInit?(): void | Promise<void>;
+  onMount?(): void | Promise<void>;
+  onUnMount?(): void | Promise<void>;
+  onDestroy?(): void | Promise<void>;
 }
 
 export function Element(options: ElementOptions) {
   return <T extends Constructor>(Base: T) => {
-    let template = options.template;
+    let template: string | undefined;
+    let style: string | undefined;
+
+    Reflect.defineMetadata('__$element__', options, Base);
 
     if (options.templateUrl) {
       template = fs.readFileSync(path.resolve(module.parent?.path || '', options.templateUrl)).toString();
@@ -32,24 +36,40 @@ export function Element(options: ElementOptions) {
       throw new Error('a template is required');
     }
 
-    let styles = options.styles;
-
     if (options.stylesUrl) {
-      styles = fs.readFileSync(path.resolve(module.parent?.path || '', options.stylesUrl)).toString();
+      style = fs.readFileSync(path.resolve(module.parent?.path || '', options.stylesUrl)).toString();
     }
 
-    if (!styles) {
-      throw new Error('a style is required');
-    }
+    class _Element extends HTMLElement {
+      constructor() {
+        super();
+        const root = this.attachShadow({ mode: 'open' });
+        root.innerHTML = [
+          '<style>', style, '</style>',
+          template
+        ].join('\n');
 
-    const meta: ElementMeta = {
-      select: options.select,
-      template: template!,
-      styles: styles!,
-      attributes: options.attributes || { }
+        for (const [name, value] of Object.entries(options.attributes || { })) {
+          if (typeof value === 'string') {
+            this.setAttribute(name, value);
+          } else {
+            this.setAttribute(name, value.join(' '));
+          }
+        }
+      }
     };
 
-    Reflect.defineMetadata('__$meta__', meta, Base);
-    return Base;
+    mixins.apply(_Element, Base);
+    Reflect.set(_Element, 'name', Base.name);
+
+    if (typeof options.select === 'string') {
+      customElements.define(options.select, _Element);
+    } else {
+      for (const select of options.select) {
+        customElements.define(select, _Element);
+      }
+    }
+
+    return _Element;
   };
 }

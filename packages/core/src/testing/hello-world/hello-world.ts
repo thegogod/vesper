@@ -6,4 +6,12 @@ import { Element } from '../../element';
   stylesUrl: './hello-world.css',
   attributes: { class: 'hello-world' }
 })
-export class HelloWorld { }
+export class HelloWorld implements Element {
+  onInit() {
+    console.log('hello-world: init');
+  }
+
+  onDestory() {
+    console.log('hello-world: destroy');
+  }
+}
