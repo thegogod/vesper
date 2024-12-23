@@ -13,7 +13,8 @@
     "url": "https://github.com/thegogod/vesper.git"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "samples/*"
   ],
   "keywords": [
     "javascript",

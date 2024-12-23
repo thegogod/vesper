@@ -1,9 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "module": "NodeNext",
-    "target": "ESNext",
-    "moduleResolution": "NodeNext",
+    "module": "ES2015",
+    "target": "ES2015",
+    "moduleResolution": "bundler",
     "strict": true,
     "noImplicitAny": true,
     "declaration": true,
@@ -18,6 +18,6 @@
     "pretty": true,
     "outDir": "dist",
     "rootDir": "src",
-    "types": ["jest", "node"]
+    "types": ["jest"]
   }
 }
