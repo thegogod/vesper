@@ -3,6 +3,9 @@
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src",
+    "module": "NodeNext",
+    "target": "ESNext",
+    "moduleResolution": "NodeNext",
     "types": ["jest", "node"]
   },
   "include": ["src/**/*.ts"]

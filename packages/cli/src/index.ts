@@ -1,6 +1,14 @@
+#! /usr/bin/env node
+
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
-const argv = yargs(hideBin(process.argv)).parseSync();
+import * as commands from './commands';
 
-console.log(argv);
+(async () => {
+  const argv = await yargs(hideBin(process.argv))
+    .command(commands.build)
+    .parse();
+
+  console.log(argv);
+})();
