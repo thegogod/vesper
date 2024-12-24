@@ -1,4 +1,1 @@
-/** @type {import('tsup').Options} */
-module.exports = {
-  ...require('@vesper/config/tsup.config')
-};
+module.exports = require('@vesper/config/tsup.config');

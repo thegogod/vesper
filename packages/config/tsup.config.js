@@ -10,5 +10,8 @@ module.exports = {
   platform: 'browser',
   target: 'es2015',
   outDir: 'dist',
-  entry: ['src/index.ts']
+  entry: ['src/index.ts'],
+  loader: {
+    '.html': 'copy'
+  }
 };
