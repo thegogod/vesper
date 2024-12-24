@@ -1,8 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import browserify from 'browserify';
 import * as tsup from 'tsup';
 import { CommandModule } from 'yargs';
+
+const browser = browserify();
 
 interface Args {
   readonly path: string;
@@ -37,6 +40,10 @@ export const build: CommandModule<{ }, Args> = {
       outDir,
       entry: [path.join(srcDir, 'index.ts')]
     });
+
+    browser.add(path.join(outDir, 'index.js')).bundle().pipe(
+      fs.createWriteStream(path.join(outDir, 'browser.js'))
+    );
 
     fs.copyFileSync(
       path.join(srcDir, 'index.html'),

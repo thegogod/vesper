@@ -29,10 +29,12 @@
     "test": "npx jest"
   },
   "dependencies": {
+    "browserify": "^17.0.1",
     "tsup": "^8.2.4",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@types/browserify": "^12.0.40",
     "@types/jest": "^29.5.12",
     "@types/node": "^22.10.2",
     "@types/yargs": "^17.0.33",
