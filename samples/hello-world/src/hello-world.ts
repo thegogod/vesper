@@ -10,4 +10,12 @@ import { Element } from '@vesper/core';
   `,
   attributes: { class: 'hello-world' }
 })
-export class HelloWorld { }
+export class HelloWorld {
+  onMount() {
+    console.log('mounted');
+  }
+
+  onUnMount() {
+    console.log('unmounted');
+  }
+}
